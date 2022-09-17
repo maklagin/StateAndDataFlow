@@ -15,13 +15,13 @@ struct RegisterView: View {
     @EnvironmentObject private var user: UserManager
     
     var body: some View {
-            VStack {
-                HStack {
-                    UserNameTextField(name: $name, showAlert: $showAlert)
-                } .padding()
-                
-                okButton(name: $name, showAlert: $showAlert, user: user)
+        VStack {
+            HStack {
+                UserNameTextField(name: $name, showAlert: $showAlert)
             } .padding()
+            
+            okButton(name: $name, showAlert: $showAlert, user: user)
+        } .padding()
             .background(Color(.systemGray5))
             .cornerRadius(20)
     }
@@ -39,6 +39,7 @@ private struct UserNameTextField: View {
             .alert("Invalid User name", isPresented: $showAlert, actions: {}) {
                 Text("Please, enter more than 2 characters")
             }
+        
         if name.count <= 2 {
             Text(name.count.formatted()).foregroundColor(.red)
         } else {
